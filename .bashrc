@@ -59,17 +59,6 @@ bind '"\C-o":"lfcd\C-m"'
 #}}}
 
 #{{{ Functions 
-# ra - stay in the current ranger's dir
-function ra() {
-	tempfile="$(mktemp -t tmp.XXXXXX)"
-	/usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-	test -f "$tempfile" &&
-	if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-		cd -- "$(cat "$tempfile")"
-	fi
-	rm -f -- "$tempfile"
-}
-
 # lfcd - stay in the current lf's dir
 lfcd () {
     tmp="$(mktemp)"
@@ -138,32 +127,4 @@ else
    export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.*)
 fi
 
-#}}}
-
-#{{{ Virtualenvwrapper
-
-# source $HOME/.local/bin/virtualenvwrapper.sh
-
-#export WORKON_HOME=$HOME/src/virtual_envs_python
-#export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-#alias p36="workon p36"
-#alias p37="workon p37"
-
-
-#function virtualenv_info(){
-    ## Get Virtual Env
-    #if [[ -n "$VIRTUAL_ENV" ]]; then
-        ## Strip out the path and just leave the env name
-        #venv="${VIRTUAL_ENV##*/}"
-    #else
-        ## In case you don't have one activated
-        #venv=''
-    #fi
-    #[ -d "$VIRTUAL_ENV" ] && VENAME=$(python --version)
-
-    #[ $VIRTUAL_ENV ] && echo "$VENAME"
-#}
-
-#VENV="\$(virtualenv_info)"
 #}}}
