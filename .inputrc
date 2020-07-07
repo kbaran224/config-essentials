@@ -1,0 +1,34 @@
+# Cycle completions with TAB
+TAB: menu-complete
+
+# Cycle backwards with Shift-TAB
+"\e[Z": menu-complete-backward
+
+# Show list of completions before cycling
+set menu-complete-display-prefix on
+
+# Show list of completions and cycle immediately
+set show-all-if-ambiguous on
+
+# Enable colors when completing filenames and directories
+set colored-stats on
+
+# Color the common prefix if multiple matches are found
+set colored-completion-prefix on
+
+# Ignore case during completion
+set completion-ignore-case on
+
+# Treat "-" and "_" the same way
+set completion-map-case on
+
+# Append "/" to symlinked dirs
+set mark-symlinked-directories on
+
+# Use typed text as a required prefix to cycle history
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Disable bell and control characters
+set bell-style none
+set echo-control-characters off
