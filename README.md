@@ -6,7 +6,7 @@
 OS: Void Linux
 Shell: bash
 DE: KDE Plasma 5
-term: Konsole
+term: Alacritty
 ```
 ### Last update: 14 Mar 2019
 
