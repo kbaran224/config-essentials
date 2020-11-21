@@ -9,8 +9,7 @@ GIT_PROMPT_ONLY_IN_REPO=1
 GIT_PROMPT_THEME=Custom
 
 # Standard user prompt, VENV unusable until virtualenvwrapper is used
-VENV=''
-export PS1="\[\e[1;31m\]$VENV\[\e[m\]\[\e[1;32m\] \w \[\e[m\]\[\e[1;36m\]>\[\e[m\] "
+export PS1="\[\e[1;32m\]$PYENV_VERSION\[\e[m\]\[\e[1;32m\] \w \[\e[m\]\[\e[1;36m\]>\[\e[m\] "
 
 
 #}}}
@@ -26,26 +25,35 @@ source /usr/share/bash-completion/completions/git
 #{{{ Exports - tools and PATH variable
 
 # Standard executables locations
-export PATH=$HOME/bin:$PATH
-export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
+export PATH="$HOME/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Git prompt
-export PATH=$HOME/.bash-git-prompt:$PATH
+export PATH="$HOME/.bash-git-prompt:$PATH"
 
-# Go lang executables
-export GOPATH=$HOME/src/go
-
-export PATH=$GOPATH:$PATH
-export PATH=$GOPATH/bin:$PATH
+# Golang executables
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH:$PATH"
+export PATH="$GOPATH/bin:$PATH"
 
 # Rust - cargo installed binaries
-export PATH=$HOME/.cargo/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Python - PyEnv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
 # Common tools
 export PAGER="less"
 export MANPAGER="less"
 export EDITOR="nvim"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/kbaran/var/google-cloud-sdk/path.bash.inc' ]; then . '/home/kbaran/var/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/kbaran/var/google-cloud-sdk/completion.bash.inc' ]; then . '/home/kbaran/var/google-cloud-sdk/completion.bash.inc'; fi
 
 # LS_COLORS variable
 #export LS_COLORS="$(vivid generate molokai)"
@@ -128,3 +136,18 @@ else
 fi
 
 #}}}
+
+# {{{ Other configurations
+# term colors fix
+eval "$(dircolors)"
+
+# enable py env
+eval "$(pyenv init -)"
+
+# kompose completion
+source <(kompose completion bash)
+
+# Starship prompt
+eval "$(starship init bash)"
+# }}}
+
